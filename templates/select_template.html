@@ -5,75 +5,62 @@
   <title>Select Resume Template</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-      margin: 0;
-      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 40px;
       text-align: center;
     }
-
     h2 {
-      color: #333;
       margin-bottom: 30px;
     }
-
-    .templates-container {
+    .template-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 30px;
+      gap: 40px;
     }
-
-    .template-card {
+    .template {
       border: 1px solid #ccc;
-      border-radius: 10px;
       padding: 15px;
-      width: 250px;
-      background-color: #fff;
-      transition: 0.3s;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
     }
-
-    .template-card:hover {
-      transform: scale(1.05);
-      border-color: #007bff;
+    .template:hover {
+      transform: scale(1.03);
     }
-
-    .template-card img {
-      width: 100%;
+    img {
+      width: 200px;
       height: auto;
       border-radius: 5px;
     }
-
-    .template-card h4 {
-      margin: 10px 0;
-    }
-
-    .template-card a {
-      text-decoration: none;
-      background-color: #4CAF50;
-      color: white;
-      padding: 8px 15px;
+    .btn {
       display: inline-block;
       margin-top: 10px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 8px 16px;
+      border: none;
       border-radius: 5px;
+      text-decoration: none;
     }
-
-    .template-card a:hover {
-      background-color: #388e3c;
+    .btn:hover {
+      background-color: #45a049;
     }
   </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 <body>
 
-  <h2>🎨 Choose a Resume Template</h2>
-
-  <div class="templates-container">
+  <h2>Choose Your Resume Template</h2>
+  <div class="template-grid">
     {% for template in templates %}
-    <div class="template-card">
+    <div class="template">
       <img src="{{ template.image }}" alt="{{ template.name }}">
-      <h4>{{ template.name }}</h4>
-      <a href="/create?template={{ template.slug }}">Use This Template</a>
+      <p><strong>{{ template.name }}</strong></p>
+      <a href="/select-template/{{ template.name | lower }}" class="btn">Use This Template</a>
     </div>
     {% endfor %}
   </div>

@@ -1,71 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Create Resume | AI Resume Builder</title>
+  
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-    }
     body {
-      background: #f2f6fc;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    .container {
-      background: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f2f5;
       padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 600px;
+      color: #333;
     }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+
     h2 {
       text-align: center;
-      color: #333;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
-    form input, form textarea, form button {
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: vertical;
+    }
+
+    input[type="file"] {
+      margin-top: 5px;
+    }
+
+    .selected-template {
+      text-align: center;
+      margin-bottom: 20px;
+      background: #f7f7f7;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .submit-btn {
       width: 100%;
       padding: 12px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-    form textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-    form button {
-      background-color: #007bff;
-      color: white;
-      font-weight: bold;
+      background-color: #4CAF50;
       border: none;
-      transition: background-color 0.3s ease;
+      color: white;
+      font-size: 16px;
+      border-radius: 6px;
+      margin-top: 25px;
+      cursor: pointer;
     }
-    form button:hover {
-      background-color: #0056b3;
+
+    .submit-btn:hover {
+      background-color: #45a049;
     }
   </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 <body>
+
   <div class="container">
     <h2>Create Your Resume</h2>
+
+    {% if session.selected_template %}
+      <div class="selected-template">
+        ✅ You selected: <strong>{{ session.selected_template | title }} Template</strong>
+      </div>
+    {% else %}
+      <div class="selected-template">
+        ⚠️ No template selected. <a href="/choose-template">Choose one</a>
+      </div>
+    {% endif %}
+
     <form method="POST" enctype="multipart/form-data">
-      <input type="text" name="name" placeholder="Full Name" required />
-      <input type="email" name="email" placeholder="Email" required />
-      <input type="text" name="skills" placeholder="Your Skills (e.g. Python, HTML, SQL)" required />
-      <textarea name="experience" placeholder="Experience (internships, projects, etc.)" required></textarea>
-      <textarea name="education" placeholder="Education (degree, college, etc.)" required></textarea>
-      <button type="submit">Generate Resume</button>
+      <label for="name">Full Name:</label>
+      <input type="text" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" required>
+
+      <label for="skills">Your Skills:</label>
+      <textarea name="skills" rows="3" required></textarea>
+
+      <label for="experience">Experience:</label>
+      <textarea name="experience" rows="3" required></textarea>
+
+      <label for="education">Education:</label>
+      <textarea name="education" rows="3" required></textarea>
+
+      <label for="photo">Profile Photo (optional):</label>
+      <input type="file" name="photo" accept="image/*">
+
+      <button type="submit" class="submit-btn">Preview Resume</button>
     </form>
   </div>
+
 </body>
 </html>

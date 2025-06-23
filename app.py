@@ -67,6 +67,25 @@ def select_template():
     ]
     return render_template("select_template.html", templates=templates)
 
+@app.route('/choose-template')
+def choose_template():
+    templates = [
+        {
+            "name": "Classic",
+            "image": "https://i.imgur.com/JP52fdG.png"
+        },
+        {
+            "name": "Modern",
+            "image": "https://i.imgur.com/k7J9FZP.png"
+        },
+        {
+            "name": "Creative",
+            "image": "https://i.imgur.com/MKxQ7tU.png"
+        }
+    ]
+    return render_template('select_template.html', templates=templates)
+
+
 @app.route('/select-template/<template_name>')
 def use_template(template_name):
     # Store the selected template name in session
