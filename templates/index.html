@@ -115,7 +115,13 @@
 <body>
 
   <header>
-    <div class="logo">AI Resume Builder</div>
+    <div class="logo" style="display: flex; align-items: center;">
+      <a href="/" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="40" style="margin-right: 10px;">
+        <span style="font-weight: bold; font-size: 20px;">AI Resume Builder</span>
+      </a>
+    </div>
+
     <div class="nav-links">
       <a href="/login">Login</a>
       <a href="/signup">Sign Up</a>
