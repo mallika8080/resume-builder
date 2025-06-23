@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Preview Resume | AI Resume Builder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f2f4f8;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .section strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #34495e;
+      font-size: 15px;
+    }
+    .section p {
+      margin: 0;
+      padding: 8px 12px;
+      background: #f9f9f9;
+      border-radius: 6px;
+      color: #2c3e50;
+      font-size: 14px;
+    }
+    form {
+      text-align: center;
+      margin-top: 30px;
+    }
+    select, button {
+      font-size: 15px;
+      padding: 10px 15px;
+      margin: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+      select, button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>Preview Your Resume</h2>
+
+  <div class="section">
+    <strong>Name:</strong>
+    <p>{{ name }}</p>
+  </div>
+
+  <div class="section">
+    <strong>Email:</strong>
+    <p>{{ email }}</p>
+  </div>
+
+  <div class="section">
+    <strong>Your Skills:</strong>
+    <p>{{ skills }}</p>
+  </div>
+
+  <div class="section">
+    <strong>AI Suggested Skills:</strong>
+    <p>{{ ai_skills }}</p>
+  </div>
+
+  <div class="section">
+    <strong>Experience:</strong>
+    <p>{{ experience }}</p>
+  </div>
+
+  <div class="section">
+    <strong>Education:</strong>
+    <p>{{ education }}</p>
+  </div>
+
+  <form method="POST" action="/download">
+    <input type="hidden" name="name" value="{{ name }}">
+    <input type="hidden" name="email" value="{{ email }}">
+    <input type="hidden" name="skills" value="{{ skills }}">
+    <input type="hidden" name="ai_skills" value="{{ ai_skills }}">
+    <input type="hidden" name="experience" value="{{ experience }}">
+    <input type="hidden" name="education" value="{{ education }}">
+
+    <label for="template">Choose Template:</label>
+    <select name="template" id="template">
+      <option value="classic">Classic</option>
+      <option value="modern">Modern</option>
+    </select>
+
+    <button type="submit">Download PDF</button>
+  </form>
+</div>
+</body>
+</html>

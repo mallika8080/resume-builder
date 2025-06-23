@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Optimized Suggestions</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #eef2f3;
+      padding: 40px;
+    }
+
+    .box {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    ul {
+      list-style: square;
+      padding-left: 20px;
+    }
+
+    li {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .back {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .back a {
+      text-decoration: none;
+      color: #555;
+    }
+
+    .back a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>AI Suggestions to Improve Your Resume</h2>
+    <ul>
+      {% for tip in suggestions %}
+        <li>{{ tip }}</li>
+      {% endfor %}
+    </ul>
+
+    <div class="back">
+      <a href="/optimize">🔄 Try Again</a> | 
+      <a href="/">🏠 Back to Home</a>
+    </div>
+  </div>
+
+</body>
+</html>

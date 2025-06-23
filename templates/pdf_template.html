@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      font-size: 14px;
+      {% if template == 'classic' %}
+      background-color: white;
+      color: black;
+      {% elif template == 'modern' %}
+      background-color: #f0f4f8;
+      color: #222;
+      {% elif template == 'elegant' %}
+      background-color: #fcfcfc;
+      color: #333;
+      font-family: 'Georgia', serif;
+      {% endif %}
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .profile-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50px;
+      object-fit: cover;
+    }
+
+    h1 {
+      margin-bottom: 5px;
+    }
+
+    .section {
+      margin-top: 20px;
+    }
+
+    .section h2 {
+      margin-bottom: 5px;
+      color: #007BFF;
+      font-size: 16px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .section p {
+      margin: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      <h1>{{ name }}</h1>
+      <p><strong>Email:</strong> {{ email }}</p>
+    </div>
+    {% if photo %}
+      <img src="static/uploads/{{ photo }}" class="profile-photo">
+    {% endif %}
+  </div>
+
+  <div class="section">
+    <h2>Skills</h2>
+    <p>{{ skills.replace('\\n', '<br>') | safe }}</p>
+  </div>
+
+  <div class="section">
+    <h2>AI Suggested Skills</h2>
+    <p>{{ ai_skills.replace('\\n', '<br>') | safe }}</p>
+  </div>
+
+  <div class="section">
+    <h2>Experience</h2>
+    <p>{{ experience.replace('\\n', '<br>') | safe }}</p>
+  </div>
+
+  <div class="section">
+    <h2>Education</h2>
+    <p>{{ education.replace('\\n', '<br>') | safe }}</p>
+  </div>
+
+</body>
+</html>

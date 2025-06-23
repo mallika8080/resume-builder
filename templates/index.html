@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Resume Builder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg-color: #f5f5f5;
+      --text-color: #333;
+      --nav-bg: #1e1e2f;
+      --nav-text: white;
+      --hero-bg: linear-gradient(135deg, #4e54c8, #8f94fb);
+      --button-bg: white;
+      --button-text: #4e54c8;
+      --button-hover: #e0e0ff;
+    }
+
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #eeeeee;
+      --nav-bg: #000000;
+      --nav-text: #ffffff;
+      --hero-bg: linear-gradient(135deg, #1f1f2e, #3c3c5c);
+      --button-bg: #333;
+      --button-text: #ffffff;
+      --button-hover: #555;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links a, .nav-links button {
+      color: var(--nav-text);
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover, .nav-links button:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+      background: var(--hero-bg);
+      color: white;
+      transition: background 0.3s;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .hero .buttons a {
+      background: var(--button-bg);
+      color: var(--button-text);
+      padding: 12px 24px;
+      margin: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      transition: 0.3s;
+    }
+
+    .hero .buttons a:hover {
+      background: var(--button-hover);
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">AI Resume Builder</div>
+    <div class="nav-links">
+      <a href="/login">Login</a>
+      <a href="/signup">Sign Up</a>
+      <button onclick="toggleDarkMode()">🌓</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Build Smart Resumes with AI</h1>
+    <p>Create, Optimize, and Download Resumes in Minutes</p>
+    <div class="buttons">
+      <a href="/create">📝 Create Resume</a>
+      <a href="/optimize">🤖 Optimize Resume</a>
+      <a href="/select-template" class="btn btn-primary">Choose Resume Template</a>
+
+    </div>
+  </section>
+
+  <script>
+    function toggleDarkMode() {
+      const isDark = document.body.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    // Apply saved theme on load
+    window.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark');
+      }
+    });
+  </script>
+
+</body>
+</html>
